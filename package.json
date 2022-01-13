@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cd portfolio && npm start",
-    "install": "cd portfolio && npm i"
+    "start": "cd movies && npm start",
+    "install": "cd movies && npm i"
   },
   "repository": {
     "type": "git",
