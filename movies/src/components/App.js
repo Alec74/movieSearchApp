@@ -63,7 +63,7 @@ const App = () => {
       	type: "SEARCH_MOVIES_REQUEST"
     	});
 	
-        fetch(`https://www.omdbapi.com/?s=${searchValue}&apikey=afd4d466`)
+        fetch(`https://www.omdbapi.com/?t=${searchValue}&apikey=afd4d466`)
       	.then(response => response.json())
       	.then(jsonResponse => {
         	if (jsonResponse.Response === "True") {
@@ -79,6 +79,7 @@ const App = () => {
           }
       	});
 	  };
+
 
     const { movies, errorMessage, loading } = state;
 
