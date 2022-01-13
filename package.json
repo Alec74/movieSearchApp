@@ -1,0 +1,23 @@
+{
+  "name": "moviesearchapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alec74/movieSearchApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alec74/movieSearchApp/issues"
+  },
+  "homepage": "https://github.com/Alec74/movieSearchApp#readme",
+  "dependencies": {
+    "react": "^17.0.2"
+  }
+}
