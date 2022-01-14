@@ -11,7 +11,8 @@ const MOVIE_API_URL = "https://www.omdbapi.com/?s=man&apikey=afd4d466"
 const initialState = {
   loading: true,
   movies: [],
-  errorMessage: null
+  errorMessage: null,
+  num: 0
 };
 
 
@@ -21,7 +22,8 @@ const reducer = (state, action) => {
       return {
         ...state,
         loading: true,
-        errorMessage: null
+        errorMessage: null,
+        num: +1
       };
     case "SEARCH_MOVIES_SUCCESS":
       return {
@@ -81,13 +83,19 @@ const App = () => {
   };
 
 
-  const { movies, errorMessage, loading } = state;
+  const { movies, errorMessage, loading, num } = state;
 
   return (
     <div className="App">
       <Header text="Movie Search" />
+      <br></br>
       <Search search={search} />
-      <p className="App-intro">Sharing a few of our favorite movies</p>
+      <br></br>
+      {num > 0 ? (
+        <p className="App-intro">Displaying Search Results:</p>
+      ) : (<p className="App-intro">Sharing a few of our favorite movies</p>)
+      }
+      <br></br>
       <div className="movies">
         <div className="columns is-mobile is-multiline is-centered">
           {loading && !errorMessage ? (
