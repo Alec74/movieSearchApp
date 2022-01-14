@@ -45,59 +45,61 @@ const reducer = (state, action) => {
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-    useEffect(() => {
-    
-        fetch(MOVIE_API_URL)
-            .then(response => response.json())
-            .then(jsonResponse => {
-        
-            dispatch({
-                type: "SEARCH_MOVIES_SUCCESS",
-                payload: jsonResponse.Search
-        	});
-      	});
-  	}, []);
+  useEffect(() => {
 
-    const search = searchValue => {
-    	dispatch({
-      	type: "SEARCH_MOVIES_REQUEST"
-    	});
-	
-        fetch(`https://www.omdbapi.com/?t=${searchValue}&apikey=afd4d466`)
-      	.then(response => response.json())
-      	.then(jsonResponse => {
-        	if (jsonResponse.Response === "True") {
-          	dispatch({
-                type: "SEARCH_MOVIES_SUCCESS",
-                payload: jsonResponse.Search
-          	});
-        	} else {
-          	dispatch({
-                type: "SEARCH_MOVIES_FAILURE",
-                error: jsonResponse.Error
-          	});
-          }
-      	});
-	  };
+    fetch(MOVIE_API_URL)
+      .then(response => response.json())
+      .then(jsonResponse => {
+
+        dispatch({
+          type: "SEARCH_MOVIES_SUCCESS",
+          payload: jsonResponse.Search
+        });
+      });
+  }, []);
+
+  const search = searchValue => {
+    dispatch({
+      type: "SEARCH_MOVIES_REQUEST"
+    });
+
+    fetch(`https://www.omdbapi.com/?s=${searchValue}&apikey=afd4d466`)
+      .then(response => response.json())
+      .then(jsonResponse => {
+        if (jsonResponse.Response === "True") {
+          dispatch({
+            type: "SEARCH_MOVIES_SUCCESS",
+            payload: jsonResponse.Search
+          });
+        } else {
+          dispatch({
+            type: "SEARCH_MOVIES_FAILURE",
+            error: jsonResponse.Error
+          });
+        }
+      });
+  };
 
 
-    const { movies, errorMessage, loading } = state;
+  const { movies, errorMessage, loading } = state;
 
-    return (
+  return (
     <div className="App">
       <Header text="Movie Search" />
       <Search search={search} />
-      <p className="App-intro">Sharing a few of our favourite movies</p>
+      <p className="App-intro">Sharing a few of our favorite movies</p>
       <div className="movies">
-        {loading && !errorMessage ? (
-          <span>loading... </span>
-        ) : errorMessage ? (
-          <div className="errorMessage">{errorMessage}</div>
-        ) : (
-          movies.map((movie, index) => (
-            <Movie key={`${index}-${movie.Title}`} movie={movie} />
-          ))
-        )}
+        <div className="columns is-mobile is-multiline is-centered">
+          {loading && !errorMessage ? (
+            <span>loading... </span>
+          ) : errorMessage ? (
+            <div className="errorMessage">{errorMessage}</div>
+          ) : (
+            movies.map((movie, index) => (
+              <Movie key={`${index}-${movie.Title}`} movie={movie} />
+            ))
+          )}
+        </div>
       </div>
     </div>
   );
