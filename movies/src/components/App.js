@@ -93,7 +93,7 @@ const App = () => {
       <br></br>
       {num > 0 ? (
         <p className="App-intro">Displaying Search Results:</p>
-      ) : (<p className="App-intro">Sharing a few of our favorite movies</p>)
+      ) : (<p className="App-intro">Welcome to the Movie Search App! Click a poster to view more details.</p>)
       }
       <br></br>
       <div className="movies">
