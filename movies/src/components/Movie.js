@@ -10,6 +10,9 @@ const Movie = ({ movie }) => {
 
 
   const [data, setData] = useState("");
+  const [ratingsIMDB, setRatingsIMDB] = useState("");
+  const [ratingsRT, setRatingsRT] = useState("");
+  const [ratingsMC, setRatingsMC] = useState("");
 
 
   useEffect(async () => {
@@ -17,9 +20,12 @@ const Movie = ({ movie }) => {
     const response = await fetch(url);
     const data = await response.json();
     setData(data)
-  },[])
+    setRatingsIMDB(data.Ratings[0])
+    setRatingsRT(data.Ratings[1])
+    setRatingsMC(data.Ratings[2])
+  }, [])
 
-
+  // console.log(data)
 
   const [modalActive, setModalState] = useState(false);
 
@@ -49,7 +55,7 @@ const Movie = ({ movie }) => {
           </form>
         </div>
         <footer className="card-footer">
-          <p className="card-footer-item">({movie.Year})</p>
+          <p className="card-footer-item">({movie.Year})&nbsp;<span>{data.Rated}</span></p>
         </footer>
         {/* <button className="js-modal-trigger" onClick={handleToggle} data-target="modal-js-example">
           Open JS example modal
@@ -59,7 +65,20 @@ const Movie = ({ movie }) => {
 
           <div className="modal-content">
             <div className="box">
-              <p></p>
+              <div className="content has-text-justified">
+                <p><b>{ratingsRT.Source}: </b>{ratingsRT.Value}</p>
+                <p><b>{ratingsIMDB.Source}: </b>{ratingsIMDB.Value}</p>
+                <p><b>{ratingsMC.Source}: </b>{ratingsMC.Value}</p>
+                <p><b>Actors: </b>{data.Actors}</p>
+                <p><b>Awards: </b>{data.Awards}</p>
+                <p><b>Director: </b>{data.Director}</p>
+                <p><b>Genre: </b>{data.Genre}</p>
+                <p><b>Release Date: </b>{data.Released}</p>
+                <p><b>Runtime: </b>{data.Runtime}</p>
+                <p><b>Writers: </b>{data.Writer}</p>
+                <h3>Plot:</h3>
+                <p>{data.Plot}</p>
+              </div>
             </div>
           </div>
           <button onClick={handleToggle} className={`modal-close is-large ${modalActive ? "" : "is-active"}`} aria-label="close"></button>
