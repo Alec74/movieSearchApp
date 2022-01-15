@@ -1,7 +1,8 @@
 # MovieSearchApp ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
   ## Description
-* An app to search any movie and see the year it was released and the poster
+* An app to search for any movie
+* Clicking a poster displays more data about the movie selected
 * Uses React and http://www.omdbapi.com/
 * Built following the tutorial found at [Link](https://www.freecodecamp.org/news/how-to-build-a-movie-search-app-using-react-hooks-24eb72ddfaf7/)
 
@@ -20,13 +21,18 @@
     * CSS
     * Javascript
     * React.js
+    * Bulma
 
   ## Usage
 
 * Visit the [Live Webpage](https://am-movie.herokuapp.com/)
 
   ## App
+  ### Welcome Screen
   ![image of webpage](./images/mainPage.png)
+
+  ### Info Screen
+  ![image of webpage](./images/info.png)
 
   ## Contributing
 

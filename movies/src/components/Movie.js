@@ -66,6 +66,7 @@ const Movie = ({ movie }) => {
           <div className="modal-content">
             <div className="box">
               <div className="content has-text-justified">
+                <h3>{data.Title}</h3>
                 <p><b>{ratingsRT.Source}: </b>{ratingsRT.Value}</p>
                 <p><b>{ratingsIMDB.Source}: </b>{ratingsIMDB.Value}</p>
                 <p><b>{ratingsMC.Source}: </b>{ratingsMC.Value}</p>
