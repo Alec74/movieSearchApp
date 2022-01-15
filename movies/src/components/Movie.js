@@ -7,6 +7,17 @@ const DEFAULT_PLACEHOLDER_IMAGE =
 const Movie = ({ movie }) => {
   const poster =
     movie.Poster === "N/A" ? DEFAULT_PLACEHOLDER_IMAGE : movie.Poster;
+
+
+  async function detailSearch(id) {
+    let url = `https://www.omdbapi.com/?i=${id}&apikey=afd4d466&plot=full`;
+    const response = await fetch(url);
+    const data = await response.json();
+    // console.log(data)
+  }
+  detailSearch(movie.imdbID);
+
+
   return (
     <div className="column is-half-mobile is-3-desktop is-4-tablet ">
       <div className="movie" className="card">
@@ -29,6 +40,7 @@ const Movie = ({ movie }) => {
         <footer className="card-footer">
           <p className="card-footer-item">({movie.Year})</p>
         </footer>
+        <p></p>
       </div>
     </div>
   );
