@@ -41,9 +41,9 @@ const Movie = ({ movie }) => {
       })
   }, [])
 
-  console.log(ratingsIMDB)
-  console.log(ratingsRT)
-  console.log(ratingsMC)
+  // console.log(ratingsIMDB)
+  // console.log(ratingsRT)
+  // console.log(ratingsMC)
 
   const [modalActive, setModalState] = useState(false);
 
