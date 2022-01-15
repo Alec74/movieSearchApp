@@ -17,15 +17,33 @@ const Movie = ({ movie }) => {
 
   useEffect(async () => {
     let url = `https://www.omdbapi.com/?i=${movie.imdbID}&apikey=afd4d466&plot=full`;
-    const response = await fetch(url);
-    const data = await response.json();
-    setData(data)
-    setRatingsIMDB(data.Ratings[0])
-    setRatingsRT(data.Ratings[1])
-    setRatingsMC(data.Ratings[2])
+    // const response = await fetch(url);
+    // const data = await response.json();
+    // setData(data)
+    // setRatingsIMDB(data.Ratings[0])
+    // setRatingsRT(data.Ratings[1])
+    // setRatingsMC(data.Ratings[2])
+    fetch(url)
+      .then(res => {
+        if(!res.Response === "True") {
+          throw Error('Could not fetch data')
+        }
+        return res.json();
+      })
+      .then(data => {
+        setData(data)
+        setRatingsIMDB(data.Ratings[0])
+        setRatingsRT(data.Ratings[1])
+        setRatingsMC(data.Ratings[2])
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }, [])
 
-  // console.log(data)
+  console.log(ratingsIMDB)
+  console.log(ratingsRT)
+  console.log(ratingsMC)
 
   const [modalActive, setModalState] = useState(false);
 
@@ -67,9 +85,21 @@ const Movie = ({ movie }) => {
             <div className="box">
               <div className="content has-text-justified">
                 <h3>{data.Title}</h3>
-                <p><b>{ratingsRT.Source}: </b>{ratingsRT.Value}</p>
-                <p><b>{ratingsIMDB.Source}: </b>{ratingsIMDB.Value}</p>
-                <p><b>{ratingsMC.Source}: </b>{ratingsMC.Value}</p>
+                {ratingsRT ? (
+                  <p><b>{ratingsRT.Source}: </b>{ratingsRT.Value}</p>
+                ) : (<p>Rotten Tomatoes Data not found</p>)
+                }
+                {ratingsIMDB ? (
+                  <p><b>{ratingsIMDB.Source}: </b>{ratingsIMDB.Value}</p>
+                ) : (<p>IMDB Data not found</p>)
+                }
+                {ratingsMC ? (
+                  <p><b>{ratingsMC.Source}: </b>{ratingsMC.Value}</p>
+                ) : (<p>MetaCritic Data not found</p>)
+                }
+                {/* <p><b>{ratingsRT.Source}: </b>{ratingsRT.Value}</p> */}
+                {/* <p><b>{ratingsIMDB.Source}: </b>{ratingsIMDB.Value}</p> */}
+                {/* <p><b>{ratingsMC.Source}: </b>{ratingsMC.Value}</p> */}
                 <p><b>Actors: </b>{data.Actors}</p>
                 <p><b>Awards: </b>{data.Awards}</p>
                 <p><b>Director: </b>{data.Director}</p>
