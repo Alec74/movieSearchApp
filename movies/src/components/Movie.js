@@ -17,12 +17,6 @@ const Movie = ({ movie }) => {
 
   useEffect(async () => {
     let url = `https://www.omdbapi.com/?i=${movie.imdbID}&apikey=afd4d466&plot=full`;
-    // const response = await fetch(url);
-    // const data = await response.json();
-    // setData(data)
-    // setRatingsIMDB(data.Ratings[0])
-    // setRatingsRT(data.Ratings[1])
-    // setRatingsMC(data.Ratings[2])
     fetch(url)
       .then(res => {
         if(!res.Response === "True") {
@@ -53,7 +47,7 @@ const Movie = ({ movie }) => {
   };
 
   return (
-    <div className="column is-half-mobile is-3-desktop is-4-tablet ">
+    <div className="column is-half-mobile is-3-desktop is-4-tablet is-one-fifth-fullhd">
       <div className="movie" className="card">
         {/* <h2 >{movie.Title}</h2> */}
         <header className="card-header">
@@ -61,8 +55,8 @@ const Movie = ({ movie }) => {
             {movie.Title}
           </p>
         </header>
-        <div className="card-image">
-          <form className="js-modal-trigger" onClick={handleToggle} data-target="modal-js-example">
+        <div className="card-image click">
+          <form className="js-modal-trigger" onClick={handleToggle} data-target="modal">
             <figure className="image is-2by3">
               <img
                 width="200"
@@ -75,9 +69,6 @@ const Movie = ({ movie }) => {
         <footer className="card-footer">
           <p className="card-footer-item">({movie.Year})&nbsp;<span>{data.Rated}</span></p>
         </footer>
-        {/* <button className="js-modal-trigger" onClick={handleToggle} data-target="modal-js-example">
-          Open JS example modal
-        </button> */}
         <div id="modal-js-example" className={`modal ${modalActive ? "is-active" : ""}`}>
           <div className="modal-background"></div>
 
@@ -97,9 +88,6 @@ const Movie = ({ movie }) => {
                   <p><b>{ratingsMC.Source}: </b>{ratingsMC.Value}</p>
                 ) : (<p>MetaCritic Data not found</p>)
                 }
-                {/* <p><b>{ratingsRT.Source}: </b>{ratingsRT.Value}</p> */}
-                {/* <p><b>{ratingsIMDB.Source}: </b>{ratingsIMDB.Value}</p> */}
-                {/* <p><b>{ratingsMC.Source}: </b>{ratingsMC.Value}</p> */}
                 <p><b>Actors: </b>{data.Actors}</p>
                 <p><b>Awards: </b>{data.Awards}</p>
                 <p><b>Director: </b>{data.Director}</p>
