@@ -47,7 +47,7 @@ const Movie = ({ movie }) => {
   };
 
   return (
-    <div className="column is-half-mobile is-3-desktop is-4-tablet is-one-fifth-fullhd">
+    <div className="column is-12-mobile is-3-desktop is-4-tablet is-one-fifth-fullhd">
       <div className="movie" className="card">
         {/* <h2 >{movie.Title}</h2> */}
         <header className="card-header">
